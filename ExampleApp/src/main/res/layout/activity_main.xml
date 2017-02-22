@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stemi.education.stemi_hexapod.MainActivity">
+
+
+    <ToggleButton
+        android:id="@+id/tBtnStandby"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/colorAccent"
+        android:onClick="onClick"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7dp"
+        android:text="Make sure you are connected to Hexapod's WiFi! :)"
+        android:textColor="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/btnL"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/btnF"
+        android:layout_marginTop="34dp"
+        android:layout_toStartOf="@+id/btnF"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Left"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnR"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignBottom="@+id/btnL"
+        android:layout_toEndOf="@+id/btnB"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Right"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnF"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/tBtnStandby"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Forward"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnB"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/btnR"
+        android:layout_marginTop="29dp"
+        android:layout_toEndOf="@+id/btnL"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick"
+        android:text="Backward"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
