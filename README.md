@@ -1,4 +1,4 @@
-# STEMI_Hexapod
+# STEMI Hexapod
 
 v1.0.0
 
