@@ -1,6 +1,6 @@
 # STEMI_Hexapod
 
-[![Download](https://api.bintray.com/packages/infinum/android/prince-of-versions/images/download.svg)](https://bintray.com/marioloncar/STEMIHexapod/stemihexapod/_latestVersion)
+[![Download](https://bintray.com/marioloncar/STEMIHexapod/stemihexapod/images/download.svg)](https://bintray.com/marioloncar/STEMIHexapod/stemihexapod/_latestVersion)
 
 Android library for easy STEMI Hexapod app programming
 
