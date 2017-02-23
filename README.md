@@ -9,3 +9,10 @@ Android library for easy STEMI Hexapod app programming
 ```groovy
 compile 'stemi_education:stemihexapod:1.0.0'
 ```
+
+## Examples
+
+1. Create new instance of Hexapod.
+```groovy
+Hexapod hexapod = new Hexapod();
+```
