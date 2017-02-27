@@ -7,7 +7,7 @@ Android library for easy STEMI Hexapod app programming
 ## Getting via jcenter
 
 ```groovy
-compile 'stemi_education:stemihexapod:1.0.0'
+compile 'stemi-education:stemihexapod:1.0.0'
 ```
 
 ## Examples
