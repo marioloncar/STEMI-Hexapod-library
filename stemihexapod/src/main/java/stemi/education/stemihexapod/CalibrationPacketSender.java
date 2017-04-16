@@ -20,13 +20,14 @@ class CalibrationPacketSender {
     private byte[] calibrationArray = new byte[18];
     private boolean openCommunication = true;
     private int sendingInterval = 100;
+    CalibrationPacketSenderStatus calibrationPacketSenderStatus;
 
     CalibrationPacketSender(Hexapod hexapod) {
         this.hexapod = hexapod;
     }
 
 
-    void enterCalibrationMode(final EnterCalibrationCallback enterCalibrationCallback)  {
+    void enterCalibrationMode(final EnterCalibrationCallback enterCalibrationCallback) {
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -70,6 +71,7 @@ class CalibrationPacketSender {
                 Thread.sleep(sendingInterval);
                 buffer.write(this.hexapod.calibrationPacket.toByteArray());
                 buffer.flush();
+                this.calibrationPacketSenderStatus.calibrationConnectionActive();
                 this.connected = true;
             }
             socket.close();
@@ -105,6 +107,7 @@ class CalibrationPacketSender {
 
     private void dropConnection() {
         this.connected = false;
+        this.calibrationPacketSenderStatus.calibrationConnectionLost();
         this.stopSendingData();
     }
 }

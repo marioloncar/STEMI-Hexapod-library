@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import stemi.education.stemihexapod.ConnectingCompleteCallback;
 import stemi.education.stemihexapod.Hexapod;
 import stemi.education.stemihexapod.HexapodStatus;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements HexapodStatus, Vi
         tBtnStandby.setSelected(true);
 
         hexapod = new Hexapod();
+        hexapod.connect();
         hexapod.hexapodStatus = this;
 
     }
@@ -90,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements HexapodStatus, Vi
     protected void onResume() {
         super.onResume();
         hexapod.connect();
-
     }
 
     @Override

@@ -3,16 +3,16 @@ package stemi.education.stemihexapod;
 /**
  * @author Mario
  * @version 1.0.0
- *
+ * <p>
  * Copyright (C) 2017 Mario Loncar. All rights reserved.
  */
 
 
 /**
- * Class for controling STEMI Hexapod robot
+ * Class for controlling STEMI Hexapod robot
  */
 
-public class Hexapod implements PacketSenderStatus {
+public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatus {
     Packet currentPacket;
     PacketSender sendPacket;
     String ipAddress;
@@ -30,6 +30,11 @@ public class Hexapod implements PacketSenderStatus {
         }
     };
 
+    @Override
+    public void calibrationConnectionLost() {hexapodStatus.connectionStatus(false);}
+
+    @Override
+    public void calibrationConnectionActive() {hexapodStatus.connectionStatus(true);}
 
     @Override
     public void connectionLost() {
@@ -360,6 +365,13 @@ public class Hexapod implements PacketSenderStatus {
     }
 
     /**
+     * Gets Hexapod standby status.
+     */
+    public boolean isInStandby() {
+        return currentPacket.onOff == 0 ? true : false;
+    }
+
+    /**
      * Set Hexapod height.
      *
      * @param height This value can be from 0 to 100.
@@ -453,5 +465,6 @@ public class Hexapod implements PacketSenderStatus {
     public byte[] fetchDataFromHexapod() {
         return initialCalibrationData;
     }
+
 }
 
