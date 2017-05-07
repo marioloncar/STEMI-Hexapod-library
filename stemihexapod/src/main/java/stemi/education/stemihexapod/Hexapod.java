@@ -14,13 +14,13 @@ package stemi.education.stemihexapod;
 
 public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatus {
     Packet currentPacket;
-    PacketSender sendPacket;
+    PacketSender packetSender;
+    CalibrationPacket calibrationPacket;
+    CalibrationPacketSender calibrationPacketSender;
     String ipAddress;
     String defaultIP = "192.168.4.1";
     int defaultPort = 80;
     int port;
-    CalibrationPacket calibrationPacket;
-    private CalibrationPacketSender calibrationPacketSender;
     private byte[] slidersArray = {50, 25, 0, 0, 0, 50, 0, 0, 0, 0, 0};
     private boolean calibrationModeEnabled = false;
     private byte[] initialCalibrationData = new byte[18];
@@ -31,10 +31,14 @@ public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatu
     };
 
     @Override
-    public void calibrationConnectionLost() {hexapodStatus.connectionStatus(false);}
+    public void calibrationConnectionLost() {
+        hexapodStatus.connectionStatus(false);
+    }
 
     @Override
-    public void calibrationConnectionActive() {hexapodStatus.connectionStatus(true);}
+    public void calibrationConnectionActive() {
+        hexapodStatus.connectionStatus(true);
+    }
 
     @Override
     public void connectionLost() {
@@ -100,6 +104,7 @@ public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatu
     public void connect() {
         if (calibrationModeEnabled) {
             calibrationPacketSender = new CalibrationPacketSender(this);
+            calibrationPacketSender.calibrationPacketSenderStatus = this;
             calibrationPacketSender.enterCalibrationMode(new EnterCalibrationCallback() {
                 @Override
                 public void onEnteredCalibration(boolean entered) {
@@ -110,9 +115,9 @@ public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatu
             });
 
         } else {
-            sendPacket = new PacketSender(this);
-            sendPacket.packetSenderStatus = this;
-            sendPacket.startSendingData();
+            packetSender = new PacketSender(this);
+            packetSender.packetSenderStatus = this;
+            packetSender.startSendingData();
         }
     }
 
@@ -122,6 +127,7 @@ public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatu
     public void connectWithCompletion(final ConnectingCompleteCallback connectingCompleteCallback) {
         if (calibrationModeEnabled) {
             calibrationPacketSender = new CalibrationPacketSender(this);
+            calibrationPacketSender.calibrationPacketSenderStatus = this;
             calibrationPacketSender.enterCalibrationMode(new EnterCalibrationCallback() {
                 @Override
                 public void onEnteredCalibration(boolean entered) {
@@ -133,9 +139,9 @@ public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatu
             });
 
         } else {
-            sendPacket = new PacketSender(this);
-            sendPacket.packetSenderStatus = this;
-            sendPacket.startSendingData();
+            packetSender = new PacketSender(this);
+            packetSender.packetSenderStatus = this;
+            packetSender.startSendingData();
             connectingCompleteCallback.onConnectingComplete(true);
         }
     }
@@ -148,7 +154,7 @@ public class Hexapod implements PacketSenderStatus, CalibrationPacketSenderStatu
         if (calibrationModeEnabled) {
             calibrationPacketSender.stopSendingData();
         } else {
-            sendPacket.stopSendingData();
+            packetSender.stopSendingData();
         }
 
     }

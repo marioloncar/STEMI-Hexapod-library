@@ -2,31 +2,22 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.1"
+version = "1.1.1"
 
 ext {
     bintrayRepo = 'STEMI'
-    bintrayName = 'stemihexapod'
-
+    bintrayName = 'stemi-hexapod'
     userOrganization = 'marioloncar'
-    publishedGroupId = 'stemi.education.stemihexapod'
-    libraryName = 'stemihexapod'
-    artifact = 'stemihexapod'
 
-    libraryDescription = 'Android library for easy STEMI Hexapod app programming'
-
-    siteUrl = 'https://github.com/marioloncar/STEMI_Hexapod'
-    gitUrl = 'https://github.com/marioloncar/STEMI_Hexapod.git'
-
+    publishedGroupId = 'com.stemi.education'
+    artifact = 'stemi-hexapod'
     libraryVersion = version
+
+    libraryName = 'STEMIHexapod'
 
     developerId = 'marioloncar'
     developerName = 'Mario Lončar'
     developerEmail = 'loncar.mario1@gmail.com'
-
-    licenseName = 'MIT'
-    licenseUrl = 'https://opensource.org/licenses/MIT'
-    allLicenses = ["MIT"]
 }
 
 android {
@@ -36,7 +27,7 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 1
+        versionCode 3
         versionName version
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -59,41 +50,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-//install {
-//    repositories.mavenInstaller {
-//        // this generates POM.xml with proper parameters
-//        pom {
-//            project {
-//                packaging 'aar'
-//                groupId publishedGroupId
-//                artifactId artifact
-//
-//                name libraryName
-//                description libraryDescription
-//                url siteUrl
-//
-//                licenses {
-//                    license {
-//                        name licenseName
-//                        url licenseUrl
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        id developerId
-//                        name developerName
-//                        email developerEmail
-//                    }
-//                }
-//                scm {
-//                    connection gitUrl
-//                    developerConnection gitUrl
-//                    url siteUrl
-//                }
-//            }
-//        }
-//    }
-//}
 
 task sourcesJar(type: Jar) {
     classifier = 'sources'
@@ -124,17 +80,17 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = bintrayRepo
-        name = bintrayName
-        userOrg = userOrganization
-        desc = libraryDescription
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = allLicenses
+        repo = 'STEMI'
+        name = 'stemi-hexapod'
+        userOrg = 'marioloncar'
+        desc = 'Android library for easy STEMI Hexapod app programming'
+        websiteUrl = 'https://github.com/marioloncar/STEMI_Hexapod'
+        vcsUrl = 'https://github.com/marioloncar/STEMI_Hexapod.git'
+        licenses = ["MIT"]
         publish = true
-        publicDownloadNumbers = true
+        publicDownloadNumbers = false
         version {
-            desc = libraryDescription
+            desc = 'Now uses connection status in calibration mode'
             gpg {
                 sign = true
                 passphrase = properties.getProperty("bintray.gpg.password")
