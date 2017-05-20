@@ -2,7 +2,7 @@ package stemi.education.stemihexapod;
 
 /**
  * @author Mario
- * @version 1.0.0
+ * @version 1.1
  * <p>
  * Copyright (C) 2017 Mario Loncar. All rights reserved.
  */
