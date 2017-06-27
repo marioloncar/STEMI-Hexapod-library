@@ -38,6 +38,8 @@ class Packet {
             outputStream.write(height);
             outputStream.write(walkingStyle);
             outputStream.write(slidersArray);
+            outputStream.write(0);
+            outputStream.write(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
