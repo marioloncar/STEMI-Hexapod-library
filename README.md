@@ -39,4 +39,7 @@ hexapod.setJoystickParameters(rotation);
 ```groovy
 Hexapod hexapod = new Hexapod(true);
 ```
-
+5. Setting custom IP address
+```groovy
+hexapod.setIpAdddress(ipAddress);
+```
